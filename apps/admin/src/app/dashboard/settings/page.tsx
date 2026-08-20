@@ -1,0 +1,1 @@
+export default function SettingsPage() { return (<div className="p-6 h-full flex flex-col"> <h1 className="text-2xl font-bold mb-4">Platform Settings</h1> <div className="flex-1 bg-white rounded-lg border border-gray-200 p-8 flex items-center justify-center text-gray-400"> <p>Business Config Will Render Here</p> </div> </div>); }

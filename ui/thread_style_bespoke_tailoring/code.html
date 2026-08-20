@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>THREAD &amp; STYLE - Bespoke Tailoring</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#1a1c1a",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#c8c6c5",
+                        "tertiary-fixed": "#ffe088",
+                        "primary": "#000000",
+                        "on-tertiary-container": "#4f3e00",
+                        "on-background": "#1b1c1c",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "on-surface": "#1b1c1c",
+                        "tertiary": "#735c00",
+                        "secondary-fixed": "#e3e2e0",
+                        "secondary-container": "#e0e0dd",
+                        "primary-fixed": "#e5e2e1",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "surface-bright": "#faf9f9",
+                        "inverse-on-surface": "#f2f0f0",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#faf9f9",
+                        "outline-variant": "#c4c7c7",
+                        "inverse-surface": "#2f3031",
+                        "secondary": "#5e5f5d",
+                        "on-secondary-fixed-variant": "#464745",
+                        "surface-container-low": "#f4f3f3",
+                        "secondary-fixed-dim": "#c7c6c4",
+                        "background": "#faf9f9",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#626361",
+                        "on-surface-variant": "#444748",
+                        "surface-variant": "#e3e2e2",
+                        "surface-tint": "#5f5e5e",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#1c1b1b",
+                        "tertiary-container": "#cca730",
+                        "surface-container": "#efeded",
+                        "on-secondary": "#ffffff",
+                        "outline": "#747878",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-primary-fixed-variant": "#474746",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface-dim": "#dbdad9",
+                        "on-tertiary-fixed": "#241a00",
+                        "on-primary-container": "#858383",
+                        "surface-container-highest": "#e3e2e2",
+                        "surface-container-high": "#e9e8e8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "32px",
+                        "margin-desktop": "64px",
+                        "container-max": "1440px",
+                        "unit": "8px",
+                        "margin-mobile": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "label-caps": ["Montserrat"],
+                        "caption": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Montserrat"],
+                        "headline-md": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600" }],
+                        "caption": ["11px", { "lineHeight": "14px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0.01em", "fontWeight": "300" }],
+                        "display-lg": ["84px", { "lineHeight": "92px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Deconstructed grid overrides & aesthetic tweaks */
+        .offset-image-right {
+            transform: translateY(48px);
+        }
+        .hairline-border {
+            border: 0.5px solid #1c1b1b;
+        }
+        .hairline-border-gold {
+            border: 0.5px solid #cca730;
+        }
+        .input-underline {
+            border-bottom: 1px solid #1c1b1b;
+        }
+        .input-underline:focus {
+            border-bottom: 1px solid #cca730;
+            outline: none;
+        }
+        
+        /* Hide scrollbar for carousel but keep functionality */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased selection:bg-tertiary-container selection:text-on-tertiary-container flex flex-col min-h-screen">
+<!-- Header / TopNavBar from JSON -->
+<header class="fixed top-0 w-full z-50 bg-surface/95 dark:bg-surface/95 backdrop-blur-md border-b border-secondary-container dark:border-on-secondary-fixed-variant">
+<div class="flex justify-between items-center px-margin-desktop py-4 w-full max-w-container-max mx-auto hidden md:flex">
+<!-- Brand -->
+<a class="font-display-lg text-[24px] tracking-tighter text-primary dark:text-on-primary-fixed uppercase uppercase" href="#">
+                THREAD &amp; STYLE
+            </a>
+<!-- Nav Links -->
+<nav class="flex gap-8 items-center">
+<a class="text-primary dark:text-tertiary-fixed border-b border-tertiary-fixed pb-1 font-label-caps text-label-caps uppercase" href="#">Home</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary-fixed transition-colors font-label-caps text-label-caps uppercase hover:text-tertiary dark:hover:text-tertiary-fixed transition-all duration-300" href="#">About Us</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary-fixed transition-colors font-label-caps text-label-caps uppercase hover:text-tertiary dark:hover:text-tertiary-fixed transition-all duration-300" href="#">Services</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary-fixed transition-colors font-label-caps text-label-caps uppercase hover:text-tertiary dark:hover:text-tertiary-fixed transition-all duration-300" href="#">Our Work</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary-fixed transition-colors font-label-caps text-label-caps uppercase hover:text-tertiary dark:hover:text-tertiary-fixed transition-all duration-300" href="#">How It Works</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary-fixed transition-colors font-label-caps text-label-caps uppercase hover:text-tertiary dark:hover:text-tertiary-fixed transition-all duration-300" href="#">Reviews</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-primary-fixed transition-colors font-label-caps text-label-caps uppercase hover:text-tertiary dark:hover:text-tertiary-fixed transition-all duration-300" href="#">Contact</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-6">
+<button class="bg-primary text-on-primary font-label-caps text-label-caps uppercase px-6 py-3 hover:bg-tertiary-container hover:text-primary transition-colors">
+                    Book Appointment
+                </button>
+<button aria-label="Chat" class="text-primary hover:text-tertiary-container transition-colors">
+<span class="material-symbols-outlined text-[24px]">chat</span>
+</button>
+</div>
+</div>
+<!-- Mobile Header (simplified for structural logic) -->
+<div class="flex justify-between items-center px-margin-mobile py-4 md:hidden">
+<a class="font-display-lg text-[20px] tracking-tighter text-primary uppercase" href="#">
+                THREAD &amp; STYLE
+            </a>
+<button aria-label="Menu" class="text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<main class="flex-grow pt-[80px]">
+<!-- 1. HERO: Editorial Split -->
+<section class="relative w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-[64px] md:py-[128px] overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<!-- Left Content -->
+<div class="md:col-span-5 md:pr-12 z-10 flex flex-col gap-6">
+<p class="font-label-caps text-label-caps text-tertiary-container tracking-[0.2em] uppercase">
+                        Precision Bespoke Tailoring
+                    </p>
+<h1 class="font-display-lg text-[48px] md:text-display-lg text-primary leading-tight">
+                        Crafted for You.<br/>Defined by Precision.
+                    </h1>
+<p class="font-body-lg text-body-lg text-secondary mt-4 max-w-md">
+                        25+ Years of Master Tailoring. Experience the pinnacle of sartorial elegance with garments engineered to your exact specifications.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4 mt-8">
+<button class="bg-primary text-on-primary font-label-caps text-label-caps uppercase px-8 py-4 hover:bg-tertiary-container hover:text-primary transition-colors flex items-center justify-center gap-2">
+                            Book a Consultation
+                        </button>
+<button class="bg-transparent border hairline-border text-primary font-label-caps text-label-caps uppercase px-8 py-4 hover:bg-surface-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+                            WhatsApp Us
+                        </button>
+</div>
+</div>
+<!-- Right Image -->
+<div class="md:col-span-7 relative mt-12 md:mt-0 offset-image-right">
+<div class="aspect-[4/5] md:aspect-[3/4] w-full overflow-hidden relative">
+<div class="bg-cover bg-center w-full h-full absolute inset-0" data-alt="A master tailor measuring a dark charcoal bespoke suit on a mannequin in a sunlit atelier, showcasing meticulous craftsmanship, high-end fashion editorial style, minimalistic composition, crisp focus on the measuring tape, light luxury aesthetic with warm subtle highlights." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAp0SVwz5SCysNR_ML2C94Xob_y09NpuqtIJR3EPl7naKgLUpFa9OZsg1YphJp3ykWnh0TmhIcZoSX4-q0VzPYBEoCjO4mjklm0YG0plbWter27_7Xtr1mwtmvJW_s0BhmUX1QvrAj1a--GEYTfnWzQztSrC3foHxysECf2RdlbpeRZ2kIXlLGMDql1ZcRu-aY80_55iqGE4xreKLkySoYRAK5b_znS2zKr20Om9wERVAI060q_DHc')"></div>
+</div>
+<!-- Decorative subtle accent -->
+<div class="absolute -bottom-8 -left-8 w-32 h-32 border-l border-b hairline-border-gold hidden md:block z-0"></div>
+</div>
+</div>
+<!-- Credibility Banner -->
+<div class="mt-24 md:mt-32 pt-12 border-t hairline-border grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex flex-col gap-2">
+<span class="material-symbols-outlined text-tertiary-container text-[24px]">straighten</span>
+<h3 class="font-label-caps text-label-caps uppercase text-primary">Perfect Fit Guarantee</h3>
+<p class="font-caption text-caption text-secondary">Engineered to your exact measurements.</p>
+</div>
+<div class="flex flex-col gap-2">
+<span class="material-symbols-outlined text-tertiary-container text-[24px]">diamond</span>
+<h3 class="font-label-caps text-label-caps uppercase text-primary">Premium Craftsmanship</h3>
+<p class="font-caption text-caption text-secondary">The finest fabrics sourced globally.</p>
+</div>
+<div class="flex flex-col gap-2">
+<span class="material-symbols-outlined text-tertiary-container text-[24px]">person_check</span>
+<h3 class="font-label-caps text-label-caps uppercase text-primary">Personalized Service</h3>
+<p class="font-caption text-caption text-secondary">A dedicated styling consultant for you.</p>
+</div>
+</div>
+</section>
+<!-- 2. MASTER TAILOR STORY -->
+<section class="bg-surface-container-low py-[128px]">
+<div class="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<!-- Left Image (breaks grid) -->
+<div class="md:col-span-6 lg:col-span-5 md:-ml-margin-desktop mb-12 md:mb-0">
+<div class="bg-cover bg-center w-full aspect-[4/3] md:aspect-square" data-alt="A wide-angle, highly stylized editorial shot of a pristine, high-end tailoring atelier interior. Clean white walls, vintage sewing machines, racks of half-finished bespoke suits. Soft natural light streaming through large windows. Minimalist, quiet luxury vibe." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAXK4VpE0nXPWoNBOJhscnUVc1EGAKuIsEU2IfmdtZslU-EeoVi6I_BkANGkW2y4t1v5EuAzJrY3CnPG8k-t9mue0cpzFVEWKH3_kQmF4bllVB0rZ0hDS4eDCF6WkC43csN_4gnAnC4XdMpT0AIW9M6dNPg0uD0OFEgzahftougnQ-qc-CzgYv3_2My6hbLc1smdY0UKtz5n5igQhVhsuACR38nr2WKDV_bpjjiNOrw8wRLhI0D5WE')"></div>
+</div>
+<!-- Right Content -->
+<div class="md:col-span-6 lg:col-span-5 lg:col-start-7 flex flex-col gap-6">
+<p class="font-label-caps text-label-caps text-tertiary-container tracking-[0.2em] uppercase">
+                            The Master Behind the Craft
+                        </p>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">
+                            25+ Years of Experience.<br/>A Lifetime of Precision.
+                        </h2>
+<p class="font-body-md text-body-md text-secondary mt-2">
+                            Our atelier is founded on the principles of traditional Savile Row tailoring infused with contemporary minimalism. Every stitch is deliberate, every cut calculated to enhance your natural silhouette. We don't just make clothes; we architect confidence.
+                        </p>
+<div class="mt-6">
+<a class="font-label-caps text-label-caps text-primary uppercase inline-flex items-center gap-2 group pb-1 border-b hairline-border-gold hover:text-tertiary-container transition-colors" href="#">
+                                Discover Our Story
+                                <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. SERVICES (Bento/Card layout) -->
+<section class="py-[128px] w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">OUR SERVICES</h2>
+</div>
+<a class="font-label-caps text-label-caps text-primary uppercase pb-1 border-b hairline-border hover:border-tertiary-container transition-colors" href="#">View All Services</a>
+</div>
+<!-- Asymmetric Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-gutter">
+<!-- Service 1 (Large) -->
+<div class="md:col-span-8 group cursor-pointer">
+<div class="relative aspect-[16/9] w-full overflow-hidden hairline-border border-transparent group-hover:border-primary transition-colors duration-500">
+<div class="bg-cover bg-center w-full h-full transform group-hover:scale-105 transition-transform duration-700" data-alt="A close-up macro shot of a tailor's hand chalking a pattern on rich navy blue wool fabric. The focus is incredibly sharp on the texture of the fabric and the crisp white chalk line. High fashion, editorial lighting, minimalist." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPo95bZLCT8FfKIJSlDptBzD7Cw0zt-y5gj9G0p7qxClsbXE12se5f6BF-z5RsWPcZ547xaZVY7Cuz9B_GenP--H1wzvr_ghnY5IFwPdIt-jI0nCfe1n9bI1MlsCfHXLkq4Ak4rfcN1cwAds-MFjH3x2yszB2Vr_1ONaeb1Q8JNFQMKrGHWufkC4Bp2ycucw5O9SeWO6MIXBfyUqfezIPIWIwatG5fdmleIh5YtLOljd5xXdC5z_4')"></div>
+</div>
+<div class="mt-4 flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-primary">Bespoke Tailoring</h3>
+<span class="material-symbols-outlined text-secondary group-hover:text-tertiary-container transition-colors">arrow_forward</span>
+</div>
+<p class="font-body-md text-body-md text-secondary mt-2 max-w-lg">From initial pattern drafting to final pressing, a truly unique garment constructed entirely for your physique.</p>
+</div>
+<!-- Service 2 (Small Vertical) -->
+<div class="md:col-span-4 group cursor-pointer md:mt-24">
+<div class="relative aspect-[3/4] w-full overflow-hidden hairline-border border-transparent group-hover:border-primary transition-colors duration-500">
+<div class="bg-cover bg-center w-full h-full transform group-hover:scale-105 transition-transform duration-700" data-alt="A perfectly tailored grey suit jacket on a modern minimalist dress form against a stark white background. High-contrast, sharp lighting, editorial fashion photography." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA0J4lLPNeUq9zEDrVWjmlDFw-tvGnvfcH9ZORpKcDKY2dOfz8L_fHFSJ2qZZoUr7fx0NCueRNQpZz3XgYXK8win2o-olBY_0q2IBoK34kF0NGCgRTbCGojTYIDhW9JL8qOQe5n37_vboECI-DnuP6LInBz0PCEBxuqJHOmgwWJhZN9ZMPY4UR9UEldPHeVN5ua13_CUjTX5SO3HwUvGUwvCGtzKszz76JQmaKMXFMHrn4FVFPi7Uo')"></div>
+</div>
+<div class="mt-4 flex justify-between items-center">
+<h3 class="font-headline-md text-[24px] text-primary">Suit &amp; Blazer Tailoring</h3>
+</div>
+</div>
+<!-- Service 3, 4, 5 (Row of 3) -->
+<div class="md:col-span-4 group cursor-pointer">
+<div class="relative aspect-[4/3] w-full overflow-hidden hairline-border border-transparent group-hover:border-primary transition-colors duration-500">
+<div class="bg-cover bg-center w-full h-full transform group-hover:scale-105 transition-transform duration-700" data-alt="Close up of a tailor carefully altering a delicate silk dress, pinning the hem. Soft focus, bright natural light, luxury atelier aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAjq_7_sxFZoHVMLvL6PAUy2uSK3RbggjB33-loaqUasITC1RRzxr2qoSYMRm6zgTdCm3xrL3II_rRDAv3IB_byWSxNM5Oghavf_wUG2PTyX0rwqZm6hyQnQ5imjnvkmM8ZWvj35n6CzUeNSYm4EOVp7leG9PDCoq9tTfbq9ibJnf0LcrJcAqWiBnZQkKqcTDz70guJTP3LGFg9Vi0-AxgNs6fNqB8Jik1rhRIc_s3DLJKx-90lN8w')"></div>
+</div>
+<h3 class="font-label-caps text-label-caps text-primary uppercase mt-4">Luxury Alterations</h3>
+</div>
+<div class="md:col-span-4 group cursor-pointer">
+<div class="relative aspect-[4/3] w-full overflow-hidden hairline-border border-transparent group-hover:border-primary transition-colors duration-500">
+<div class="bg-cover bg-center w-full h-full transform group-hover:scale-105 transition-transform duration-700" data-alt="A detail shot of intricate lace and beadwork on a bespoke bridal gown, draped elegantly over a minimalist chair in a bright, white studio." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA39UQCw73UVOrQVQW0pLXY5MIN6nqJvW0gc8MUTdhZzNHuoQEyLQPM2832Qrg0z-OnhjeImAJg4tLZnqyKwWTPc9m_4kk9j165KXJf-81axo3s7tkmkH9y_ycECRsLRW_IJDO9WcZ2LNPs8DpTSa945f01RrDIkrEqMwz6gu-xVyOqj94CjOvdld1bLxP-97CRVoo-SJGa-wLH-M-yC0ZQiOq2hw7fFuOQS_aq2FueUJdz5VFaQH0')"></div>
+</div>
+<h3 class="font-label-caps text-label-caps text-primary uppercase mt-4">Bridal Tailoring</h3>
+</div>
+<div class="md:col-span-4 group cursor-pointer">
+<div class="relative aspect-[4/3] w-full overflow-hidden hairline-border border-transparent group-hover:border-primary transition-colors duration-500">
+<div class="bg-cover bg-center w-full h-full transform group-hover:scale-105 transition-transform duration-700" data-alt="A high-end luxury vehicle parked in front of a modern home, with a sharply dressed tailor carrying a sleek black garment bag approaching the door. Cinematic lighting, conveying exclusivity and premium service." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCXmlnlCQSTOQorBEvIzbl0ZM_ypc3uF7rkU9mplr3QFKveRLD54TBl84kTaT0SzcVAqSpJKv9NYDgmoBXHW_2RfC294tNk6CUJR9NkHO-xIejpDOVh98-w4p4OnjU8hsqIZzWRVJfy2phWeDKOug9XU4gVPUY2KeLzhPDptRCdjf94h7VZ1qiCjnEIz_p-v9GDr1j1-rV2QOpuM5FEVDqSpIFGwNOQ3h8hQ_LNQF3jVnRBNwrFUKo')"></div>
+</div>
+<h3 class="font-label-caps text-label-caps text-primary uppercase mt-4">Doorstep Service</h3>
+</div>
+</div>
+</section>
+<!-- 7. CTA SECTION -->
+<section class="py-[128px] w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden flex items-center justify-center">
+<div class="bg-cover bg-center w-full h-full absolute inset-0 z-0 brightness-75" data-alt="A wide, cinematic shot of a sleek, minimalist garment bag resting on a luxurious velvet sofa in a modern penthouse living room. The lighting is moody but crisp, suggesting high-end doorstep delivery service of a bespoke suit." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA-qczNI1gKGbSKrnxheuibLZSno72eAvdcYpa3J0gpX1Z192m4rhPRdSQmpA7Lx6SSxUNiDYpLaeLy8SqDD5-oxf2yGvPQnV8H3pdB_A-tmqGo2v_IERNwWT8fpm2KazTaOmO9PuLRUtEx1n5m1K9e8iPF08o-jeO_unrJjA5eyzxNdWZoMPfOwS0_UbgmCPEijrhCtqa9lE3u2_Xvs3tD9TY4CLhsYTYIQq3enXT43nKCFxV-K5A')"></div>
+<div class="relative z-10 text-center flex flex-col items-center px-4">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-primary mb-8 max-w-2xl">
+                         TAILORING, AT YOUR DOORSTEP.
+                     </h2>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps uppercase px-10 py-5 hover:bg-tertiary-container hover:text-primary transition-colors">
+                        Request Doorstep Service
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer from JSON -->
+<footer class="bg-inverse-surface dark:bg-surface-container-lowest border-t border-on-secondary-fixed-variant dark:border-outline-variant w-full">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-16 w-full max-w-container-max mx-auto">
+<!-- Brand Column -->
+<div class="md:col-span-1">
+<span class="font-display-lg text-headline-md text-inverse-on-surface dark:text-on-surface mb-8 block uppercase">
+                    THREAD &amp; STYLE
+                </span>
+<p class="font-caption text-caption text-secondary">
+                    © 2024 THREAD &amp; STYLE. ALL RIGHTS RESERVED.
+                </p>
+</div>
+<!-- Links Columns -->
+<div class="flex flex-col gap-4">
+<h4 class="font-label-caps text-label-caps text-inverse-on-surface dark:text-on-surface uppercase mb-2">Company</h4>
+<a class="font-body-md text-body-md text-secondary-fixed-dim dark:text-secondary hover:text-tertiary-fixed dark:hover:text-tertiary transition-colors duration-200" href="#">About Us</a>
+<a class="font-body-md text-body-md text-secondary-fixed-dim dark:text-secondary hover:text-tertiary-fixed dark:hover:text-tertiary transition-colors duration-200" href="#">Careers</a>
+<a class="font-body-md text-body-md text-secondary-fixed-dim dark:text-secondary hover:text-tertiary-fixed dark:hover:text-tertiary transition-colors duration-200" href="#">Journal</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-caps text-label-caps text-inverse-on-surface dark:text-on-surface uppercase mb-2">Services</h4>
+<a class="font-body-md text-body-md text-secondary-fixed-dim dark:text-secondary hover:text-tertiary-fixed dark:hover:text-tertiary transition-colors duration-200" href="#">Bespoke Tailoring</a>
+<a class="font-body-md text-body-md text-secondary-fixed-dim dark:text-secondary hover:text-tertiary-fixed dark:hover:text-tertiary transition-colors duration-200" href="#">Alterations</a>
+<a class="font-body-md text-body-md text-secondary-fixed-dim dark:text-secondary hover:text-tertiary-fixed dark:hover:text-tertiary transition-colors duration-200" href="#">Bridal</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-caps text-label-caps text-inverse-on-surface dark:text-on-surface uppercase mb-2">Contact &amp; Legal</h4>
+<a class="font-body-md text-body-md text-secondary-fixed-dim dark:text-secondary hover:text-tertiary-fixed dark:hover:text-tertiary transition-colors duration-200" href="#">Contact Us</a>
+<a class="font-body-md text-body-md text-secondary-fixed-dim dark:text-secondary hover:text-tertiary-fixed dark:hover:text-tertiary transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-secondary-fixed-dim dark:text-secondary hover:text-tertiary-fixed dark:hover:text-tertiary transition-colors duration-200" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</body></html>

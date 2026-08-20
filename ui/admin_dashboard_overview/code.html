@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>THREAD &amp; STYLE - Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#1a1c1a",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#c8c6c5",
+                        "tertiary-fixed": "#ffe088",
+                        "primary": "#000000",
+                        "on-tertiary-container": "#4f3e00",
+                        "on-background": "#1b1c1c",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "on-surface": "#1b1c1c",
+                        "tertiary": "#735c00",
+                        "secondary-fixed": "#e3e2e0",
+                        "secondary-container": "#e0e0dd",
+                        "primary-fixed": "#e5e2e1",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "surface-bright": "#faf9f9",
+                        "inverse-on-surface": "#f2f0f0",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#faf9f9",
+                        "outline-variant": "#c4c7c7",
+                        "inverse-surface": "#2f3031",
+                        "secondary": "#5e5f5d",
+                        "on-secondary-fixed-variant": "#464745",
+                        "surface-container-low": "#f4f3f3",
+                        "secondary-fixed-dim": "#c7c6c4",
+                        "background": "#faf9f9",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#626361",
+                        "on-surface-variant": "#444748",
+                        "surface-variant": "#e3e2e2",
+                        "surface-tint": "#5f5e5e",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#1c1b1b",
+                        "tertiary-container": "#cca730",
+                        "surface-container": "#efeded",
+                        "on-secondary": "#ffffff",
+                        "outline": "#747878",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-primary-fixed-variant": "#474746",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface-dim": "#dbdad9",
+                        "on-tertiary-fixed": "#241a00",
+                        "on-primary-container": "#858383",
+                        "surface-container-highest": "#e3e2e2",
+                        "surface-container-high": "#e9e8e8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "32px",
+                        "margin-desktop": "64px",
+                        "container-max": "1440px",
+                        "unit": "8px",
+                        "margin-mobile": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "label-caps": ["Montserrat"],
+                        "caption": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Montserrat"],
+                        "headline-md": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "headline-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600" }],
+                        "caption": ["11px", { "lineHeight": "14px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0.01em", "fontWeight": "300" }],
+                        "display-lg": ["84px", { "lineHeight": "92px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Dashboard specific overrides for high-density */
+        .dash-card {
+            border: 1px solid #c4c7c7; /* outline-variant */
+            background-color: #ffffff; /* surface-container-lowest */
+        }
+        .dash-table th {
+            border-bottom: 2px solid #1c1b1b; /* primary-container */
+        }
+        .dash-table td {
+            border-bottom: 1px solid #e3e2e2; /* surface-variant */
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 bg-surface-container-lowest border-r border-outline-variant flex flex-col hidden md:flex h-full flex-shrink-0">
+<div class="p-6 border-b border-outline-variant">
+<h1 class="font-headline-md text-headline-md text-primary tracking-tighter leading-none">T&amp;S</h1>
+<p class="font-label-caps text-label-caps text-secondary mt-1">Admin Portal</p>
+</div>
+<nav class="flex-1 overflow-y-auto py-4">
+<ul class="space-y-1 px-4">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary-container text-on-primary rounded-none" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-secondary hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-caps text-label-caps">Leads</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-secondary hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps">Customers</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-secondary hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="event">event</span>
+<span class="font-label-caps text-label-caps">Appointments</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-secondary hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="image">image</span>
+<span class="font-label-caps text-label-caps">Portfolio</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-secondary hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="font-label-caps text-label-caps">Reviews</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-secondary hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span class="font-label-caps text-label-caps">Analytics</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="p-4 border-t border-outline-variant">
+<a class="flex items-center gap-3 px-3 py-2 text-secondary hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto bg-surface relative flex flex-col h-full">
+<!-- Mobile Header (Visible only on mobile) -->
+<header class="md:hidden bg-surface-container-lowest border-b border-outline-variant p-4 flex justify-between items-center sticky top-0 z-10">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tighter leading-none">T&amp;S Admin</h1>
+<button class="text-primary p-2">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</header>
+<div class="p-6 md:p-8 flex-1 max-w-[1600px] mx-auto w-full">
+<!-- Header Section -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 gap-4">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-1">Admin Dashboard Overview</h2>
+<p class="font-body-md text-body-md text-secondary">A snapshot of your current lead funnel and operations.</p>
+</div>
+<div class="flex items-center gap-2 border-b border-primary pb-1">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="calendar_today">calendar_today</span>
+<select class="bg-transparent border-none p-0 pr-6 font-label-caps text-label-caps text-primary focus:ring-0 cursor-pointer">
+<option>Last 30 Days</option>
+<option>Last 7 Days</option>
+<option>This Month</option>
+<option>Year to Date</option>
+</select>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<!-- Stat Card 1 -->
+<div class="dash-card p-5">
+<div class="flex justify-between items-start mb-4">
+<p class="font-label-caps text-label-caps text-secondary">Total Leads</p>
+<span class="material-symbols-outlined text-outline" data-icon="group">group</span>
+</div>
+<div class="flex items-baseline gap-3">
+<h3 class="font-headline-md text-headline-md text-primary">1,248</h3>
+<span class="font-caption text-caption text-tertiary-container flex items-center">
+<span class="material-symbols-outlined text-[14px]" data-icon="arrow_upward">arrow_upward</span> 12%
+                        </span>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="dash-card p-5">
+<div class="flex justify-between items-start mb-4">
+<p class="font-label-caps text-label-caps text-secondary">New Leads</p>
+<span class="material-symbols-outlined text-outline" data-icon="fiber_new">fiber_new</span>
+</div>
+<div class="flex items-baseline gap-3">
+<h3 class="font-headline-md text-headline-md text-primary">86</h3>
+<span class="font-caption text-caption text-tertiary-container flex items-center">
+<span class="material-symbols-outlined text-[14px]" data-icon="arrow_upward">arrow_upward</span> 5%
+                        </span>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="dash-card p-5 bg-surface-container-low border-none">
+<div class="flex justify-between items-start mb-4">
+<p class="font-label-caps text-label-caps text-secondary">Consultations Scheduled</p>
+<span class="material-symbols-outlined text-outline" data-icon="event_available">event_available</span>
+</div>
+<div class="flex items-baseline gap-3">
+<h3 class="font-headline-md text-headline-md text-primary">34</h3>
+</div>
+</div>
+<!-- Stat Card 4 -->
+<div class="dash-card p-5">
+<div class="flex justify-between items-start mb-4">
+<p class="font-label-caps text-label-caps text-secondary">Quotes Sent</p>
+<span class="material-symbols-outlined text-outline" data-icon="request_quote">request_quote</span>
+</div>
+<div class="flex items-baseline gap-3">
+<h3 class="font-headline-md text-headline-md text-primary">21</h3>
+<span class="font-caption text-caption text-secondary flex items-center">
+<span class="material-symbols-outlined text-[14px]" data-icon="arrow_downward">arrow_downward</span> 2%
+                        </span>
+</div>
+</div>
+</div>
+<!-- Charts Section (Placeholder UI for charts) -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+<!-- Line Chart Placeholder -->
+<div class="dash-card p-6 flex flex-col">
+<h3 class="font-label-caps text-label-caps text-primary mb-6">Leads over Time</h3>
+<div class="flex-1 min-h-[250px] relative border-b border-l border-outline-variant flex items-end justify-between px-4 pb-0 pt-4">
+<!-- Y-axis labels -->
+<div class="absolute left-[-24px] top-0 bottom-0 flex flex-col justify-between text-caption text-secondary font-caption py-2">
+<span>100</span>
+<span>50</span>
+<span>0</span>
+</div>
+<!-- Chart Lines (Simulated with SVG for visual representation) -->
+<svg class="absolute inset-0 w-full h-full p-4 overflow-visible" preserveaspectratio="none" viewbox="0 0 100 100">
+<polyline fill="none" points="0,80 20,60 40,75 60,30 80,45 100,10" stroke="#cca730" stroke-width="2" vector-effect="non-scaling-stroke"></polyline>
+</svg>
+<!-- X-axis labels -->
+<div class="absolute bottom-[-24px] left-0 right-0 flex justify-between text-caption text-secondary font-caption px-4">
+<span>Week 1</span>
+<span>Week 2</span>
+<span>Week 3</span>
+<span>Week 4</span>
+</div>
+</div>
+</div>
+<!-- Bar Chart Placeholder -->
+<div class="dash-card p-6 flex flex-col">
+<h3 class="font-label-caps text-label-caps text-primary mb-6">Service Demand</h3>
+<div class="flex-1 min-h-[250px] relative border-b border-l border-outline-variant flex items-end justify-around px-2 pb-0 pt-8 gap-4">
+<!-- Y-axis labels -->
+<div class="absolute left-[-24px] top-0 bottom-0 flex flex-col justify-between text-caption text-secondary font-caption py-2">
+<span>40</span>
+<span>20</span>
+<span>0</span>
+</div>
+<!-- Bars -->
+<div class="w-1/4 bg-primary h-[80%] relative group cursor-pointer transition-all hover:bg-tertiary-container">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 text-caption text-primary font-caption opacity-0 group-hover:opacity-100 transition-opacity">32</span>
+</div>
+<div class="w-1/4 bg-surface-tint h-[45%] relative group cursor-pointer transition-all hover:bg-tertiary-container">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 text-caption text-primary font-caption opacity-0 group-hover:opacity-100 transition-opacity">18</span>
+</div>
+<div class="w-1/4 bg-outline h-[60%] relative group cursor-pointer transition-all hover:bg-tertiary-container">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 text-caption text-primary font-caption opacity-0 group-hover:opacity-100 transition-opacity">24</span>
+</div>
+<div class="w-1/4 bg-secondary-fixed-dim h-[25%] relative group cursor-pointer transition-all hover:bg-tertiary-container">
+<span class="absolute -top-6 left-1/2 -translate-x-1/2 text-caption text-primary font-caption opacity-0 group-hover:opacity-100 transition-opacity">10</span>
+</div>
+<!-- X-axis labels -->
+<div class="absolute bottom-[-32px] left-0 right-0 flex justify-around text-caption text-secondary font-caption px-2 text-center">
+<span class="w-1/4">Bespoke Suit</span>
+<span class="w-1/4">Alterations</span>
+<span class="w-1/4">Styling</span>
+<span class="w-1/4">Bridal</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Leads Table -->
+<div class="dash-card overflow-hidden">
+<div class="p-6 border-b border-surface-variant flex justify-between items-center">
+<h3 class="font-label-caps text-label-caps text-primary">Recent Leads</h3>
+<a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors border-b border-secondary hover:border-primary pb-0.5" href="#">View All</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse dash-table">
+<thead>
+<tr>
+<th class="py-4 px-6 font-label-caps text-label-caps text-secondary font-semibold">Lead ID</th>
+<th class="py-4 px-6 font-label-caps text-label-caps text-secondary font-semibold">Customer Name</th>
+<th class="py-4 px-6 font-label-caps text-label-caps text-secondary font-semibold">Service Type</th>
+<th class="py-4 px-6 font-label-caps text-label-caps text-secondary font-semibold">Status</th>
+<th class="py-4 px-6 font-label-caps text-label-caps text-secondary font-semibold text-right">Action</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-4 px-6 text-secondary font-caption">#LD-092</td>
+<td class="py-4 px-6">Eleanor Vance</td>
+<td class="py-4 px-6">Bespoke Suit</td>
+<td class="py-4 px-6">
+<span class="inline-block px-2 py-1 bg-tertiary-fixed text-on-tertiary-fixed font-caption text-caption uppercase tracking-wider">New</span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="font-label-caps text-label-caps text-primary border border-primary px-3 py-1 hover:bg-primary hover:text-on-primary transition-colors">Review</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-4 px-6 text-secondary font-caption">#LD-091</td>
+<td class="py-4 px-6">Arthur Pendelton</td>
+<td class="py-4 px-6">Alterations</td>
+<td class="py-4 px-6">
+<span class="inline-block px-2 py-1 bg-surface-variant text-on-surface-variant font-caption text-caption uppercase tracking-wider">Contacted</span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="font-label-caps text-label-caps text-primary border border-primary px-3 py-1 hover:bg-primary hover:text-on-primary transition-colors">Review</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-4 px-6 text-secondary font-caption">#LD-090</td>
+<td class="py-4 px-6">Clara Hughes</td>
+<td class="py-4 px-6">Bridal Styling</td>
+<td class="py-4 px-6">
+<span class="inline-block px-2 py-1 bg-outline text-on-primary font-caption text-caption uppercase tracking-wider">In Progress</span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="font-label-caps text-label-caps text-primary border border-primary px-3 py-1 hover:bg-primary hover:text-on-primary transition-colors">Review</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-4 px-6 text-secondary font-caption">#LD-089</td>
+<td class="py-4 px-6">Marcus Thorne</td>
+<td class="py-4 px-6">Wardrobe Consultation</td>
+<td class="py-4 px-6">
+<span class="inline-block px-2 py-1 bg-surface-variant text-on-surface-variant font-caption text-caption uppercase tracking-wider">Contacted</span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="font-label-caps text-label-caps text-primary border border-primary px-3 py-1 hover:bg-primary hover:text-on-primary transition-colors">Review</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Footer subtle space -->
+<div class="h-16"></div>
+</div>
+</main>
+</body></html>

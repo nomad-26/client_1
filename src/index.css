@@ -1,0 +1,76 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  body {
+    background-color: #faf9f9;
+    color: #1b1c1c;
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.fill-icon {
+  font-variation-settings: 'FILL' 1;
+}
+
+/* Deconstructed grid overrides & aesthetic tweaks */
+.offset-image-right {
+  transform: translateY(48px);
+}
+@media (max-width: 768px) {
+  .offset-image-right {
+    transform: translateY(0);
+  }
+}
+
+.hairline-border {
+  border: 0.5px solid #1c1b1b;
+}
+
+.hairline-border-gold {
+  border: 0.5px solid #cca730;
+}
+
+.input-underline {
+  border-bottom: 1px solid #1c1b1b;
+}
+.input-underline:focus {
+  border-bottom: 1px solid #cca730;
+  outline: none;
+}
+
+/* Dashboard specific overrides for high-density */
+.dash-card {
+  border: 1px solid #c4c7c7;
+  background-color: #ffffff;
+}
+
+.dash-table th {
+  border-bottom: 2px solid #1c1b1b;
+}
+
+.dash-table td {
+  border-bottom: 1px solid #e3e2e2;
+}
+
+/* Hide scrollbar for carousel but keep functionality */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Offset utilities */
+.offset-y-subtle {
+  transform: translateY(2rem);
+}
+@media (max-width: 768px) {
+  .offset-y-subtle {
+    transform: translateY(0);
+  }
+}
