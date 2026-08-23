@@ -119,3 +119,13 @@ Desktop.ini
 *.temp
 tmp/
 temp/
+
+
+
+service-account.json
+.env
+.env.local
+.google-tokens.json
+.google-business-tokens.json
+
+.vercel
