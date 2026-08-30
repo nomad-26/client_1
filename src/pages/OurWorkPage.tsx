@@ -95,7 +95,7 @@ export function OurWorkPage() {
                   className="group relative aspect-[3/4] rounded-2xl overflow-hidden border border-outline-variant shadow-md cursor-pointer transition-all duration-300 hover:shadow-xl hover:border-tertiary-container/60 active:scale-[0.98] bg-zinc-950 block"
                 >
                   <img
-                    src={cat.coverImage || cat.images[0]?.imageUrl || "/images/work-royal-navy-suit.jpg"}
+                    src={cat.coverImage || cat.images[0]?.imageUrl || "/images/work-royal-navy-suit.webp"}
                     alt={cat.name}
                     width={600}
                     height={800}

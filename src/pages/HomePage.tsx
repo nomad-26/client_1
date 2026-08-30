@@ -24,6 +24,8 @@ import { ScrollProgress } from "../components/ScrollProgress";
 import { FloatingWhatsApp } from "../components/FloatingWhatsApp";
 import { Footer } from "../components/Footer";
 import { SEO } from "../components/SEO";
+import { GoogleIcon } from "../components/GoogleIcon";
+import { LazyGoogleMap } from "../components/LazyGoogleMap";
 import {
   getWebSiteSchema,
   getOrganizationSchema,
@@ -61,7 +63,7 @@ const ALL_SERVICES_CATALOG: ServiceCatalogItem[] = [
     category: "Men's Tailoring",
     description: "Classic two-piece bespoke suits cut to your exact posture, shoulder profile, and silhouette.",
     featured: true,
-    image: "/images/service-bespoke-suits.jpg",
+    image: "/images/service-bespoke-suits.webp",
   },
   {
     id: "3-piece-suit-stitching",
@@ -69,7 +71,7 @@ const ALL_SERVICES_CATALOG: ServiceCatalogItem[] = [
     category: "Men's Tailoring",
     description: "Executive 3-piece ensembles featuring hand-padded lapels and tailored waistcoats.",
     featured: true,
-    image: "/images/work-super150s-suit.jpg",
+    image: "/images/work-super150s-suit.webp",
   },
   {
     id: "tuxedo-stitching",
@@ -77,7 +79,7 @@ const ALL_SERVICES_CATALOG: ServiceCatalogItem[] = [
     category: "Men's Tailoring",
     description: "Black-tie ceremonial tuxedos with satin peak or shawl lapels tailored for gala events.",
     featured: true,
-    image: "/images/work-midnight-tuxedo.jpg",
+    image: "/images/work-midnight-tuxedo.webp",
   },
   {
     id: "wedding-suit-stitching",
@@ -85,7 +87,7 @@ const ALL_SERVICES_CATALOG: ServiceCatalogItem[] = [
     category: "Men's Tailoring",
     description: "Celebratory bespoke groom wear, royal navy suits, and customized wedding attire.",
     featured: true,
-    image: "/images/work-royal-navy-suit.jpg",
+    image: "/images/work-royal-navy-suit.webp",
   },
   {
     id: "coat-stitching",
@@ -119,7 +121,7 @@ const ALL_SERVICES_CATALOG: ServiceCatalogItem[] = [
     category: "Alterations & Customization",
     description: "Precision adjustments and restyling of luxury garments, couture evening wear, and designer suits.",
     featured: true,
-    image: "/images/service-alterations-fitting.jpg",
+    image: "/images/service-alterations-fitting.webp",
   },
   {
     id: "custom-alterations",
@@ -209,7 +211,7 @@ const ALL_SERVICES_CATALOG: ServiceCatalogItem[] = [
     category: "Bridal",
     description: "Complete bridal party couture suites, wedding gowns, and ceremonial attire of the highest order.",
     featured: true,
-    image: "/images/service-bridal-formalwear.jpg",
+    image: "/images/service-bridal-formalwear.webp",
   },
   {
     id: "bridal-blouse-stitching",
@@ -249,7 +251,7 @@ const ALL_SERVICES_CATALOG: ServiceCatalogItem[] = [
     category: "Specialty",
     description: "Our master tailor visits your home or salon with fabric swatches and measurement tools for private fitting.",
     featured: true,
-    image: "/images/about-heritage-atelier.jpg",
+    image: "/images/about-heritage-atelier.webp",
   },
   {
     id: "kids-wear-stitching",
@@ -372,6 +374,8 @@ export function HomePage() {
   }, [location.state]);
 
   const [reviewsData, setReviewsData] = useState<ReviewsApiResponse | null>(null);
+  const [reviewsLoading, setReviewsLoading] = useState<boolean>(true);
+  const [reviewsError, setReviewsError] = useState<string | null>(null);
 
   // Fetch Google Drive Categories from /api/portfolio
   const fetchGallery = async () => {
@@ -394,19 +398,33 @@ export function HomePage() {
 
   const fetchReviews = async () => {
     try {
+      setReviewsLoading(true);
+      setReviewsError(null);
       const res = await fetch("/api/reviews");
-      if (res.ok) {
-        const json = await res.json();
-        setReviewsData(json);
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}: Failed to fetch reviews`);
       }
-    } catch {
-      // Graceful fallback
+      const json: ReviewsApiResponse = await res.json();
+      setReviewsData(json);
+      if (json.error && (!json.reviews || json.reviews.length === 0)) {
+        setReviewsError(json.error);
+      }
+    } catch (err: any) {
+      console.error("Error fetching reviews:", err);
+      setReviewsError("Google reviews are temporarily unavailable. Please check back shortly.");
+    } finally {
+      setReviewsLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchGallery();
-    fetchReviews();
+    // Defer non-critical API calls to ensure initial render is fast and uninterrupted
+    const deferTimer = setTimeout(() => {
+      fetchGallery();
+      fetchReviews();
+    }, 600);
+
+    return () => clearTimeout(deferTimer);
   }, []);
 
   const filteredServices =
@@ -532,8 +550,8 @@ export function HomePage() {
   return (
     <div className="min-h-screen w-full flex flex-col bg-surface text-on-surface overflow-x-hidden">
       <SEO
-        title="FANTASY KING | Best Tailor & Designer Alterations in Salem"
-        description="FANTASY KING is a premium tailoring and alteration atelier in Swarnapuri, Salem offering bespoke suits, designer tailoring, bridal wear, custom stitching and precision garment alterations."
+        title="FANTASY KING | Best Designer & Tailor Alterations"
+        description="FANTASY KING is Salem's premier bespoke tailor in Swarnapuri. Expert custom suit tailoring, designer blouses, bridal wear & precision garment alterations."
         canonicalPath="/"
         schema={[
           getWebSiteSchema(),
@@ -573,7 +591,9 @@ export function HomePage() {
               className="group relative min-h-[260px] xs:min-h-[290px] sm:min-h-[340px] md:min-h-[360px] overflow-hidden cursor-pointer border-b md:border-b-0 md:border-r border-white/10 flex flex-col justify-end p-5 xs:p-6 sm:p-8 lg:p-12 transition-all duration-300"
             >
               <img
-                src="/images/shop-mens-tailoring.jpg"
+                src="/images/shop-mens-tailoring.webp"
+                srcSet="/images/shop-mens-tailoring-mobile.webp 640w, /images/shop-mens-tailoring.webp 1200w"
+                sizes="(max-width: 640px) 100vw, 50vw"
                 alt="Master tailor measuring male customer for bespoke suits and shirts in tailoring shop"
                 width={1200}
                 height={800}
@@ -611,7 +631,9 @@ export function HomePage() {
               className="group relative min-h-[260px] xs:min-h-[290px] sm:min-h-[340px] md:min-h-[360px] overflow-hidden cursor-pointer border-b border-white/10 flex flex-col justify-end p-5 xs:p-6 sm:p-8 lg:p-12 transition-all duration-300"
             >
               <img
-                src="/images/shop-womens-tailoring.jpg"
+                src="/images/shop-womens-tailoring.webp"
+                srcSet="/images/shop-womens-tailoring-mobile.webp 640w, /images/shop-womens-tailoring.webp 1200w"
+                sizes="(max-width: 640px) 100vw, 50vw"
                 alt="Professional female tailor measuring female customer for custom dresses, blouses and sarees"
                 width={1200}
                 height={800}
@@ -649,7 +671,9 @@ export function HomePage() {
               className="group relative min-h-[260px] xs:min-h-[290px] sm:min-h-[340px] md:min-h-[360px] overflow-hidden cursor-pointer border-b md:border-b-0 md:border-r border-white/10 flex flex-col justify-end p-5 xs:p-6 sm:p-8 lg:p-12 transition-all duration-300"
             >
               <img
-                src="/images/shop-kids-tailoring.jpg"
+                src="/images/shop-kids-tailoring.webp"
+                srcSet="/images/shop-kids-tailoring-mobile.webp 640w, /images/shop-kids-tailoring.webp 1200w"
+                sizes="(max-width: 640px) 100vw, 50vw"
                 alt="Friendly master tailor taking measurements of a smiling child for custom outfits in tailoring shop"
                 width={1200}
                 height={800}
@@ -686,7 +710,9 @@ export function HomePage() {
               className="group relative min-h-[260px] xs:min-h-[290px] sm:min-h-[340px] md:min-h-[360px] overflow-hidden cursor-pointer flex flex-col justify-end p-5 xs:p-6 sm:p-8 lg:p-12 transition-all duration-300"
             >
               <img
-                src="/images/shop-bridal-tailoring.jpg"
+                src="/images/shop-bridal-tailoring.webp"
+                srcSet="/images/shop-bridal-tailoring-mobile.webp 640w, /images/shop-bridal-tailoring.webp 1200w"
+                sizes="(max-width: 640px) 100vw, 50vw"
                 alt="Master bridal couturier delicately fitting exquisite custom bridal lehenga and wedding gown in atelier"
                 width={1200}
                 height={800}
@@ -793,7 +819,7 @@ export function HomePage() {
               className="lg:col-span-6 relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-zinc-200"
             >
               <img
-                src="/images/about-heritage-atelier.jpg"
+                src="/images/about-heritage-atelier.webp"
                 alt="Bespoke menswear suits and handcrafted jackets displayed in atelier workshop"
                 width={800}
                 height={600}
@@ -1045,7 +1071,7 @@ export function HomePage() {
               <div>
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img
-                    src="/images/shop-mens-tailoring.jpg"
+                    src="/images/shop-mens-tailoring.webp"
                     alt="Professional master tailor measuring male customer with measuring tape in tailoring shop"
                     width={600}
                     height={450}
@@ -1110,7 +1136,7 @@ export function HomePage() {
               <div>
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img
-                    src="/images/shop-womens-tailoring.jpg"
+                    src="/images/shop-womens-tailoring.webp"
                     alt="Professional female tailor measuring female customer for custom outfit with measuring tape"
                     width={600}
                     height={450}
@@ -1175,7 +1201,7 @@ export function HomePage() {
               <div>
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img
-                    src="/images/shop-alterations.jpg"
+                    src="/images/shop-alterations.webp"
                     alt="Master tailor pinning and marking garment for precision alterations on cutting table"
                     width={600}
                     height={450}
@@ -1240,7 +1266,7 @@ export function HomePage() {
               <div>
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img
-                    src="/images/shop-custom-stitching.jpg"
+                    src="/images/shop-custom-stitching.webp"
                     alt="Master tailor operating industrial sewing machine with precision stitches in workshop"
                     width={600}
                     height={450}
@@ -1348,7 +1374,7 @@ export function HomePage() {
 
               <div className="lg:col-span-6 relative aspect-[4/3] lg:aspect-auto lg:h-full min-h-[300px]">
                 <img
-                  src="/images/shop-fabric-selection.jpg"
+                  src="/images/shop-fabric-selection.webp"
                   alt="Tailor and customer reviewing fabric swatch books and luxury fabric rolls at tailoring shop counter"
                   width={800}
                   height={600}
@@ -1365,23 +1391,97 @@ export function HomePage() {
         {/* ========================================================================= */}
         {/* 5. REVIEWS & ACCOLADES SECTION (#reviews)                                  */}
         {/* ========================================================================= */}
+        {/* ========================================================================= */}
+        {/* 5. REVIEWS & ACCOLADES SECTION (#reviews)                                  */}
+        {/* ========================================================================= */}
         <section
           id="reviews"
           className="py-16 sm:py-24 md:py-32 bg-surface-container-low w-full scroll-mt-20 md:scroll-mt-24"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-16">
-            <div className="text-center mb-12 sm:mb-20">
+            <div className="text-center mb-10 sm:mb-14">
               <p className="font-label-caps text-xs tracking-[0.2em] text-tertiary-container uppercase font-semibold mb-2 sm:mb-3">
                 Client Endorsements
               </p>
               <h2 className="font-display-lg text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-zinc-950 mb-4 sm:mb-6 font-bold">
                 Reviews &amp; Accolades
               </h2>
-              <div className="w-20 sm:w-24 h-1 bg-tertiary-container mx-auto rounded-full" />
+
+              {/* Dynamic Google Live Rating Summary Pill */}
+              <div className="inline-flex flex-wrap items-center justify-center gap-3 sm:gap-5 px-6 py-3 rounded-2xl bg-white border border-zinc-200 shadow-sm">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xl sm:text-2xl font-bold font-display-lg text-zinc-950">
+                    {(reviewsData?.business?.rating ?? reviewsData?.rating ?? 5.0).toFixed(1)}
+                  </span>
+                  <div className="flex text-tertiary-container">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        size={17}
+                        className="text-tertiary-container fill-tertiary-container"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <div className="h-4 w-px bg-zinc-200 hidden sm:block"></div>
+
+                <span className="text-xs sm:text-sm font-medium text-zinc-700">
+                  Based on{" "}
+                  <strong className="text-zinc-950 font-semibold">
+                    {reviewsData?.business?.userRatingCount ?? reviewsData?.totalReviews ?? 213} Google reviews
+                  </strong>
+                </span>
+
+                <div className="h-4 w-px bg-zinc-200 hidden sm:block"></div>
+
+                <a
+                  href={reviewsData?.business?.googleMapsUri || reviewsData?.googleMapsUri || "https://www.google.com/maps/place/FANTASY+KING+(Designer)+alteration+%26+tailoring/@11.6762356,78.137468,17z/data=!3m1!4b1!4m6!3m5!1s0x3babf1a42dce11fb:0xcfe95d8a18e2f334!8m2!3d11.6762356!4d78.137468!16s%2Fg%2F11xf_c9fbr"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-semibold text-tertiary-container hover:underline inline-flex items-center gap-1"
+                >
+                  <GoogleIcon className="w-3.5 h-3.5" />
+                  <span>Google Maps</span>
+                  <ExternalLink size={12} />
+                </a>
+              </div>
+
+              <div className="w-20 sm:w-24 h-1 bg-tertiary-container mx-auto rounded-full mt-6" />
             </div>
 
-            {/* Real Google Reviews Grid */}
-            {reviewsData && reviewsData.reviews && reviewsData.reviews.length > 0 ? (
+            {/* Loading Skeleton */}
+            {reviewsLoading && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                {[...Array(3)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="bg-white p-6 sm:p-8 rounded-2xl border border-zinc-200 shadow-sm animate-pulse flex flex-col justify-between h-64"
+                  >
+                    <div className="space-y-3">
+                      <div className="flex gap-1 text-tertiary-container">
+                        {[...Array(5)].map((_, s) => (
+                          <div key={s} className="w-4 h-4 bg-zinc-200 rounded"></div>
+                        ))}
+                      </div>
+                      <div className="h-3 bg-zinc-200 rounded w-full"></div>
+                      <div className="h-3 bg-zinc-200 rounded w-4/5"></div>
+                      <div className="h-3 bg-zinc-200 rounded w-2/3"></div>
+                    </div>
+                    <div className="pt-4 border-t border-zinc-200 flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-full bg-zinc-200"></div>
+                      <div className="space-y-1.5 flex-1">
+                        <div className="h-3 bg-zinc-200 rounded w-1/2"></div>
+                        <div className="h-2.5 bg-zinc-200 rounded w-1/3"></div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Real Google Reviews Grid (Desktop: 3 per row, Tablet: 2 per row, Mobile: 1 per row) */}
+            {!reviewsLoading && reviewsData?.reviews && reviewsData.reviews.length > 0 && (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 {reviewsData.reviews.slice(0, 3).map((rev, idx) => (
                   <motion.div
@@ -1389,55 +1489,107 @@ export function HomePage() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: idx * 0.12, duration: 0.5 }}
-                    className="bg-white p-6 sm:p-8 rounded-2xl border border-zinc-200 shadow-sm flex flex-col justify-between"
+                    transition={{ delay: idx * 0.1, duration: 0.4 }}
+                    className="bg-white p-6 sm:p-8 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between"
                   >
                     <div>
-                      <div className="flex gap-1 text-tertiary-container mb-3 sm:mb-4">
-                        {[...Array(rev.rating || 5)].map((_, i) => (
-                          <Star key={i} size={16} fill="currentColor" />
-                        ))}
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex gap-1 text-tertiary-container">
+                          {[...Array(rev.rating || 5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              size={16}
+                              className="text-tertiary-container fill-tertiary-container"
+                            />
+                          ))}
+                        </div>
+                        <div className="flex items-center gap-1 text-[11px] text-zinc-500 font-medium">
+                          <GoogleIcon className="w-3.5 h-3.5" />
+                          <span>Google Maps</span>
+                        </div>
                       </div>
-                      <p className="font-body-md text-zinc-700 text-xs sm:text-sm leading-relaxed mb-6 italic">
-                        "{rev.comment || 'Outstanding tailoring and alteration craftsmanship.'}"
-                      </p>
+                      {rev.comment ? (
+                        <p className="font-body-md text-zinc-700 text-xs sm:text-sm leading-relaxed mb-6 italic">
+                          "{rev.comment}"
+                        </p>
+                      ) : (
+                        <p className="font-body-md text-zinc-400 text-xs sm:text-sm leading-relaxed mb-6 italic">
+                          [5-star rating on Google Maps]
+                        </p>
+                      )}
                     </div>
-                    <div className="pt-4 border-t border-zinc-200 flex items-center justify-between">
-                      <div>
-                        <h4 className="font-display-lg text-sm sm:text-base font-bold text-zinc-950">{rev.authorName}</h4>
-                        <p className="font-caption text-[11px] sm:text-xs text-zinc-500">{rev.relativePublishTimeDescription || 'Google Maps Verified Review'}</p>
+                    <div className="pt-4 border-t border-zinc-200 flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3 min-w-0">
+                        {rev.authorPhotoUrl ? (
+                          <img
+                            src={rev.authorPhotoUrl}
+                            alt={rev.authorName}
+                            className="w-9 h-9 rounded-full object-cover border border-zinc-200 shrink-0"
+                            onError={(e) => {
+                              (e.currentTarget as HTMLElement).style.display = "none";
+                            }}
+                          />
+                        ) : (
+                          <div className="w-9 h-9 rounded-full bg-tertiary-container/20 text-tertiary-container font-display-lg font-bold text-xs flex items-center justify-center shrink-0 border border-tertiary-container/30">
+                            {rev.authorName ? rev.authorName.charAt(0).toUpperCase() : "G"}
+                          </div>
+                        )}
+                        <div className="min-w-0">
+                          <h4 className="font-display-lg text-xs sm:text-sm font-bold text-zinc-950 truncate">
+                            {rev.authorName}
+                          </h4>
+                          <p className="font-caption text-[11px] text-zinc-500">
+                            {rev.relativePublishTimeDescription || "Google Maps Review"}
+                          </p>
+                        </div>
                       </div>
-                      <span className="inline-block font-label-caps text-[10px] text-tertiary-container uppercase tracking-wider bg-zinc-100 px-2 py-1 rounded font-semibold">
-                        Google
+                      <span className="inline-flex items-center gap-1 font-label-caps text-[10px] text-tertiary-container uppercase tracking-wider bg-zinc-100 px-2 py-1 rounded font-semibold shrink-0">
+                        <ShieldCheck size={11} /> Verified
                       </span>
                     </div>
                   </motion.div>
                 ))}
               </div>
-            ) : (
-              <div className="text-center py-12 bg-white rounded-2xl border border-zinc-200 max-w-2xl mx-auto px-6">
-                <p className="text-sm text-zinc-600 mb-6">
-                  Read authentic 5.0-star customer testimonials from our distinguished clients on Google Maps.
+            )}
+
+            {/* Dynamic Empty / Error State */}
+            {!reviewsLoading && (!reviewsData?.reviews || reviewsData.reviews.length === 0) && (
+              <div className="p-8 sm:p-12 rounded-2xl bg-white border border-zinc-200 text-center max-w-xl mx-auto shadow-sm">
+                <div className="w-12 h-12 rounded-full bg-tertiary-container/15 text-tertiary-container flex items-center justify-center mx-auto mb-4">
+                  <GoogleIcon className="w-6 h-6" />
+                </div>
+                <h3 className="font-display-lg text-lg font-bold text-zinc-950 mb-2">
+                  5.0 ★★★★★ ({reviewsData?.business?.userRatingCount ?? reviewsData?.totalReviews ?? 213} Google Reviews)
+                </h3>
+                <p className="text-zinc-600 text-xs sm:text-sm mb-6 leading-relaxed">
+                  Authentic 5.0-star customer testimonials from our distinguished clients are verified live on our official Google Business Profile.
                 </p>
-                <Link
-                  to="/reviews"
-                  className="px-6 py-3 bg-tertiary-container text-black font-label-caps text-xs font-semibold uppercase tracking-wider rounded-full hover:bg-yellow-500 transition-all inline-flex items-center gap-2"
+                <a
+                  href={reviewsData?.business?.googleMapsUri || reviewsData?.googleMapsUri || "https://www.google.com/maps/place/FANTASY+KING+(Designer)+alteration+%26+tailoring/@11.6762356,78.137468,17z/data=!3m1!4b1!4m6!3m5!1s0x3babf1a42dce11fb:0xcfe95d8a18e2f334!8m2!3d11.6762356!4d78.137468!16s%2Fg%2F11xf_c9fbr"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-black hover:bg-tertiary-container hover:text-black text-white font-label-caps text-xs font-semibold uppercase tracking-wider rounded-full transition-all shadow-md group cursor-pointer"
                 >
-                  <span>Explore Google Reviews</span>
-                  <ArrowRight size={14} />
-                </Link>
+                  <span>View All Reviews on Google</span>
+                  <ExternalLink size={14} className="transform group-hover:translate-x-0.5 transition-transform" />
+                </a>
               </div>
             )}
 
-            <div className="mt-10 sm:mt-12 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                to="/reviews"
-                className="px-6 py-3 rounded-full bg-white border border-zinc-200 hover:border-tertiary-container text-xs font-semibold text-zinc-900 shadow-sm inline-flex items-center gap-2 transition-colors"
+            {/* Google Reviews Toolbar */}
+            <div className="mt-10 sm:mt-14 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href={reviewsData?.business?.googleMapsUri || reviewsData?.googleMapsUri || "https://www.google.com/maps/place/FANTASY+KING+(Designer)+alteration+%26+tailoring/@11.6762356,78.137468,17z/data=!3m1!4b1!4m6!3m5!1s0x3babf1a42dce11fb:0xcfe95d8a18e2f334!8m2!3d11.6762356!4d78.137468!16s%2Fg%2F11xf_c9fbr"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-black text-white hover:bg-tertiary-container hover:text-black border border-black hover:border-tertiary-container text-xs font-semibold shadow-md inline-flex items-center justify-center gap-2.5 transition-all duration-200 cursor-pointer group"
               >
-                <span>View all Google Reviews</span>
-                <ArrowRight size={13} />
-              </Link>
-              <div className="inline-flex items-center gap-2.5 sm:gap-3 px-6 py-3 rounded-full bg-white border border-zinc-200 text-xs text-zinc-700 shadow-sm">
+                <GoogleIcon className="w-4 h-4" />
+                <span>View All Reviews on Google</span>
+                <ExternalLink size={13} className="transform group-hover:translate-x-0.5 transition-transform" />
+              </a>
+
+              <div className="inline-flex items-center gap-2.5 sm:gap-3 px-6 py-3.5 rounded-full bg-white border border-zinc-200 text-xs text-zinc-700 shadow-sm">
                 <ShieldCheck size={18} className="text-tertiary-container" />
                 <span className="font-medium">100% Perfect Fit Guarantee on All Bespoke Commissions</span>
               </div>
@@ -1793,28 +1945,7 @@ export function HomePage() {
                     </div>
                   </div>
 
-                  <div className="relative rounded-xl overflow-hidden border border-zinc-200 aspect-[16/9] shadow-inner bg-zinc-200">
-                    <iframe
-                      title="FANTASY KING Google Maps Location"
-                      src="https://maps.google.com/maps?q=11.6762356,78.137468&z=17&output=embed"
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen={false}
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      className="w-full h-full grayscale contrast-125 opacity-90 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-                    />
-                    <a
-                      href="https://www.google.com/maps/place/FANTASY+KING+(Designer)+alteration+%26+tailoring/@11.6762356,78.137468,17z/data=!3m1!4b1!4m6!3m5!1s0x3babf1a42dce11fb:0xcfe95d8a18e2f334!8m2!3d11.6762356!4d78.137468!16s%2Fg%2F11xf_c9fbr"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="absolute bottom-2.5 right-2.5 bg-black/85 hover:bg-black text-white text-[11px] font-label-caps uppercase tracking-wider px-3 py-1.5 rounded-lg backdrop-blur-md border border-white/20 flex items-center gap-1.5 transition-all shadow-md group active:scale-95"
-                    >
-                      <span>Get Directions</span>
-                      <ArrowRight size={12} className="transform group-hover:translate-x-1 transition-transform" />
-                    </a>
-                  </div>
+                  <LazyGoogleMap />
 
                   <div className="pt-4 border-t border-zinc-200 space-y-3">
                     <h4 className="font-label-caps text-xs text-zinc-600 uppercase mb-2 font-semibold">Direct Inquiries</h4>

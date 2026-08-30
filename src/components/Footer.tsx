@@ -159,7 +159,7 @@ export function Footer() {
             <Link
               to="/contact"
               onClick={(e) => handleLinkClick(e, "/contact")}
-              className="font-body-md text-xs sm:text-sm text-tertiary-fixed hover:text-yellow-300 transition-colors duration-200 py-0.5 font-medium"
+              className="font-body-md text-xs sm:text-sm text-tertiary-fixed hover:text-accent-light transition-colors duration-200 py-0.5 font-medium"
             >
               Book an Appointment →
             </Link>

@@ -147,14 +147,14 @@ export function ContactPage() {
   return (
     <div className="min-h-screen w-full flex flex-col bg-surface text-on-surface overflow-x-hidden">
       <SEO
-        title="Contact FANTASY KING | Tailor in Swarnapuri, Salem"
-        description="Contact FANTASY KING for bespoke tailoring, garment alterations and appointments at our Swarnapuri, Salem atelier near Khadhims and Puma Showroom."
+        title="FANTASY KING Tailor in Swarnapuri, Salem | Contact & Location | FANTASY KING"
+        description="Visit FANTASY KING atelier in Swarnapuri, Salem (opposite Puma Showroom, near Khadhims). Call +91 88380 66960 to book bespoke tailoring & alteration fittings."
         canonicalPath="/contact"
         schema={[
           getLocalBusinessSchema(),
           getBreadcrumbSchema([
             { name: "Home", url: "/" },
-            { name: "Contact", url: "/contact" },
+            { name: "Contact Us", url: "/contact" },
           ]),
           getFAQSchema([
             {
@@ -197,7 +197,7 @@ export function ContactPage() {
                 <span>Atelier Concierge</span>
               </div>
               <h1 className="font-display-lg text-3xl sm:text-5xl md:text-6xl text-primary dark:text-white font-bold leading-tight mb-6">
-                Visit FANTASY KING — Tailor in Swarnapuri, Salem
+                FANTASY KING Tailor in Swarnapuri, Salem | Contact &amp; Location
               </h1>
               <p className="font-body-md text-secondary text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
                 Schedule a private tailoring consultation, bespoke wedding fitting, or visit our atelier in Swarnapuri, Salem.

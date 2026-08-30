@@ -44,7 +44,7 @@ const SERVICES_DATA: ServiceItem[] = [
       "Over 500+ premium wool fabrics",
       "2-3 precision fitting stages",
     ],
-    image: "/images/service-bespoke-suits.jpg",
+    image: "/images/service-bespoke-suits.webp",
     featured: true,
   },
   {
@@ -95,7 +95,7 @@ const SERVICES_DATA: ServiceItem[] = [
       "Padded cups and comfort lining",
       "Custom neckline and back styling",
     ],
-    image: "/images/service-bridal-formalwear.jpg",
+    image: "/images/service-bridal-formalwear.webp",
     featured: true,
   },
   {
@@ -133,7 +133,7 @@ const SERVICES_DATA: ServiceItem[] = [
       "Precision waist yoke tailoring",
       "Bridal dupatta draping and styling",
     ],
-    image: "/images/service-bridal-formalwear.jpg",
+    image: "/images/service-bridal-formalwear.webp",
     featured: true,
   },
   {
@@ -159,7 +159,7 @@ const SERVICES_DATA: ServiceItem[] = [
       "Sleeve length adjustment with working buttonholes",
       "Chest and jacket waist tapering",
     ],
-    image: "/images/service-alterations-fitting.jpg",
+    image: "/images/service-alterations-fitting.webp",
     featured: true,
   },
   {
@@ -256,8 +256,8 @@ export function ServicesPage() {
   return (
     <div className="min-h-screen w-full flex flex-col bg-surface text-on-surface overflow-x-hidden">
       <SEO
-        title="Tailoring & Alteration Services in Salem | FANTASY KING"
-        description="Explore bespoke tailoring, suit stitching, dress alterations, blouse tailoring, bridal wear, blazer alterations and custom garment fitting in Salem."
+        title="Bespoke Tailoring & Garment Alteration Services in Salem | FANTASY KING"
+        description="Explore bespoke tailoring services at FANTASY KING Salem: custom men's suits, designer blouse stitching, bridal lehengas, kids wear & master clothing alterations."
         canonicalPath="/services"
         schema={[
           getLocalBusinessSchema(),
@@ -476,7 +476,15 @@ export function ServicesPage() {
                 to="/contact"
                 className="w-full sm:w-auto min-h-[48px] px-8 py-3.5 bg-tertiary-container text-black font-label-caps text-xs font-semibold uppercase tracking-wider rounded-full hover:bg-yellow-500 transition-all inline-flex items-center justify-center gap-2 shadow-lg"
               >
-                Book Appointment <ArrowRight size={15} />
+                <span>Book Appointment in Salem</span>
+                <ArrowRight size={15} />
+              </Link>
+              <Link
+                to="/our-work-gallery"
+                className="w-full sm:w-auto min-h-[48px] px-8 py-3.5 border border-zinc-700 hover:border-tertiary-container text-white font-label-caps text-xs font-semibold uppercase tracking-wider rounded-full transition-all inline-flex items-center justify-center gap-2 hover:bg-zinc-900"
+              >
+                <span>See Our Work Gallery</span>
+                <ArrowRight size={14} />
               </Link>
               <a
                 href={getWhatsAppUrl(DEFAULT_WHATSAPP_MESSAGES.consultation)}

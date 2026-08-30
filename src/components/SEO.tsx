@@ -66,7 +66,7 @@ export function SEO({
     setMetaTag("property", "og:url", fullCanonical);
     setMetaTag("property", "og:type", ogType);
     setMetaTag("property", "og:image", ogImage.startsWith("http") ? ogImage : `${BASE_URL}${ogImage}`);
-    setMetaTag("property", "og:site_name", "FANTASY KING (Designer) Alteration & Tailoring");
+    setMetaTag("property", "og:site_name", "FANTASY KING | Best Designer & Tailor Alterations");
     setMetaTag("property", "og:locale", "en_IN");
 
     // 5. Set Twitter Card Metadata

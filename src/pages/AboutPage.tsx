@@ -23,15 +23,15 @@ export function AboutPage() {
   return (
     <div className="min-h-screen w-full flex flex-col bg-surface text-on-surface overflow-x-hidden">
       <SEO
-        title="About FANTASY KING | Master Tailor in Salem"
-        description="Discover FANTASY KING's master tailoring craftsmanship in Salem, specializing in bespoke garments, precision alterations, custom fitting and designer tailoring."
+        title="Master Tailor & Bespoke Tailoring Craftsmanship in Salem | FANTASY KING"
+        description="Discover FANTASY KING's heritage of bespoke tailoring and master craftsmanship in Swarnapuri, Salem. 25+ years of custom suits, couture and precision fitting."
         canonicalPath="/about"
         schema={[
           getOrganizationSchema(),
           getLocalBusinessSchema(),
           getBreadcrumbSchema([
             { name: "Home", url: "/" },
-            { name: "About", url: "/about" },
+            { name: "About Us", url: "/about" },
           ]),
         ]}
       />
@@ -89,12 +89,20 @@ export function AboutPage() {
                   <p className="text-secondary text-xs uppercase tracking-wider mt-1">Natural Lifetime Drape</p>
                 </div>
               </div>
-              <div className="pt-2">
+              <div className="pt-3 flex flex-wrap gap-4 items-center">
                 <Link
-                  to="/contact"
-                  className="font-label-caps text-xs uppercase font-semibold text-primary dark:text-white pb-1 border-b-2 border-tertiary-container hover:text-tertiary-container transition-colors inline-flex items-center gap-2 cursor-pointer"
+                  to="/services"
+                  className="font-label-caps text-xs uppercase font-semibold text-primary dark:text-white pb-1 border-b-2 border-tertiary-container hover:text-tertiary-container transition-colors inline-flex items-center gap-1.5 cursor-pointer"
                 >
-                  Schedule Private Atelier Consultation <ArrowRight size={14} />
+                  <span>Explore Tailoring &amp; Alteration Services</span>
+                  <ArrowRight size={13} />
+                </Link>
+                <Link
+                  to="/our-work-gallery"
+                  className="font-label-caps text-xs uppercase font-semibold text-primary dark:text-white pb-1 border-b-2 border-outline-variant hover:border-tertiary-container hover:text-tertiary-container transition-colors inline-flex items-center gap-1.5 cursor-pointer"
+                >
+                  <span>View Our Work Gallery</span>
+                  <ArrowRight size={13} />
                 </Link>
               </div>
             </motion.div>
@@ -107,7 +115,7 @@ export function AboutPage() {
               className="lg:col-span-6 relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-outline-variant"
             >
               <img
-                src="/images/about-heritage-atelier.jpg"
+                src="/images/about-heritage-atelier.webp"
                 alt="FANTASY KING master tailoring workshop and bespoke suits crafted in Salem atelier"
                 width={800}
                 height={600}

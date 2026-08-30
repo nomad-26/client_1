@@ -93,8 +93,8 @@ export function OurWorkGalleryPage() {
   return (
     <div className="min-h-screen w-full flex flex-col bg-surface text-on-surface overflow-x-hidden selection:bg-tertiary-container/30">
       <SEO
-        title="Our Work | Bespoke Tailoring & Alterations in Salem"
-        description="Explore FANTASY KING's bespoke tailoring, custom stitching, bridal creations, garment alterations and precision fitting portfolio in Salem."
+        title="Bespoke Tailoring & Alteration Portfolio in Salem | FANTASY KING"
+        description="View FANTASY KING's bespoke tailoring and garment alteration portfolio in Salem. Real photographs of custom suits, designer blouses, bridal wear & restyling."
         canonicalPath="/our-work-gallery"
         schema={[
           getLocalBusinessSchema(),
@@ -133,7 +133,7 @@ export function OurWorkGalleryPage() {
               <span>Bespoke Tailoring Portfolio</span>
             </div>
             <h1 className="font-display-lg text-3xl xs:text-4xl sm:text-5xl md:text-6xl text-zinc-950 font-bold mb-3 tracking-tight">
-              Our Bespoke Tailoring &amp; Alteration Work
+              Bespoke Tailoring &amp; Garment Alteration Portfolio in Salem
             </h1>
             <p className="font-headline-md text-base sm:text-xl md:text-2xl text-tertiary-container font-semibold mb-3">
               Crafted with Precision in Salem. Designed for You.
@@ -291,13 +291,22 @@ export function OurWorkGalleryPage() {
                 Bring your fabric swatches or design references. Our master tailors will take precise measurements and draft a bespoke pattern exclusively for you.
               </p>
             </div>
-            <Link
-              to="/contact"
-              className="shrink-0 min-h-[46px] px-7 py-3 rounded-full bg-tertiary-container hover:bg-yellow-500 text-black font-label-caps text-xs font-bold uppercase tracking-widest inline-flex items-center gap-2 transition-all shadow-md active:scale-95 cursor-pointer"
-            >
-              <span>Book An Appointment</span>
-              <ArrowRight size={14} />
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+              <Link
+                to="/services"
+                className="min-h-[46px] px-6 py-3 rounded-full border border-zinc-700 hover:border-tertiary-container text-white font-label-caps text-xs font-semibold uppercase tracking-wider inline-flex items-center justify-center gap-2 hover:bg-zinc-900 transition-all cursor-pointer"
+              >
+                <span>Explore Services</span>
+                <ArrowRight size={13} />
+              </Link>
+              <Link
+                to="/contact"
+                className="min-h-[46px] px-7 py-3 rounded-full bg-tertiary-container hover:bg-yellow-500 text-black font-label-caps text-xs font-bold uppercase tracking-widest inline-flex items-center justify-center gap-2 transition-all shadow-md active:scale-95 cursor-pointer"
+              >
+                <span>Book Appointment</span>
+                <ArrowRight size={14} />
+              </Link>
+            </div>
           </div>
         </section>
       </main>

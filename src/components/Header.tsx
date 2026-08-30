@@ -159,7 +159,7 @@ export function Header({ activeSection: activeSectionProp, onNavigateSection }: 
         >
           <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-lg overflow-hidden flex items-center justify-center shrink-0 border border-zinc-200 group-hover:border-tertiary-container/70 transition-all duration-300 shadow-sm bg-white">
             <img
-              src="/images/fantasy-king-logo.png"
+              src="/images/fantasy-king-logo.webp"
               alt="Fantasy King"
               width={48}
               height={48}
@@ -218,7 +218,7 @@ export function Header({ activeSection: activeSectionProp, onNavigateSection }: 
             aria-label="Chat with FANTASY KING on WhatsApp"
             className="w-10 h-10 flex items-center justify-center rounded-full text-zinc-900 hover:text-tertiary-container hover:bg-black/5 transition-all cursor-pointer active:scale-90"
           >
-            <span className="material-symbols-outlined text-[24px]">chat</span>
+            <MessageCircle size={22} />
           </a>
         </div>
       </div>
@@ -234,7 +234,7 @@ export function Header({ activeSection: activeSectionProp, onNavigateSection }: 
         >
           <div className="w-9 h-9 rounded-lg overflow-hidden flex items-center justify-center shrink-0 border border-zinc-200 shadow-sm bg-white">
             <img
-              src="/images/fantasy-king-logo.png"
+              src="/images/fantasy-king-logo.webp"
               alt="Fantasy King"
               width={36}
               height={36}
@@ -258,7 +258,7 @@ export function Header({ activeSection: activeSectionProp, onNavigateSection }: 
             aria-label="Chat with FANTASY KING on WhatsApp"
             className="w-11 h-11 flex items-center justify-center text-zinc-900 active:scale-90"
           >
-            <span className="material-symbols-outlined text-[22px]">chat</span>
+            <MessageCircle size={22} />
           </a>
           <button
             aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
